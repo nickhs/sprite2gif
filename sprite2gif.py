@@ -106,6 +106,10 @@ def run():
     l_width = float(width) / int(layout.split('x')[0])
     l_height = float(height) / int(layout.split('x')[1])
 
+    ret = validateImageMagickInstall()
+    if ret is None:
+        return
+
     command = "convert %s -crop %sx%s +repage -set dispose background -loop 0 -set delay 10 %s" % (infile, l_width, l_height, outfile)
     print "[.] Executing: %s" % command
 
